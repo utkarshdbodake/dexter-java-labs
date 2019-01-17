@@ -13,8 +13,6 @@ public class StudentService {
 
     public Student[] getStudents() {
         return studentDao.getAll();
-
-        // https://jsonplaceholder.typicode.com/users
     }
 
     public Student getStudent(String id) {
