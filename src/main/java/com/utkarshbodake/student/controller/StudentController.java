@@ -5,10 +5,14 @@ import com.utkarshbodake.student.entity.CurrentUser;
 import com.utkarshbodake.student.entity.Student;
 import com.utkarshbodake.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 @RequestMapping("/students")
@@ -21,13 +25,19 @@ public class StudentController {
     private StudentService studentService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public Student[] getStudents() {
+    public List<Student> getStudents() {
         return studentService.getStudents();
     }
 
     @UserRequired
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public Student getStudent(@PathVariable String id) {
         return studentService.getStudent(id);
+    }
+
+    @UserRequired
+    @PostMapping
+    public void createStudent(@RequestBody Student student) {
+        studentService.createStudent(student);
     }
 }
