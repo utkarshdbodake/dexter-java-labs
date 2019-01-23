@@ -1,5 +1,6 @@
 package com.utkarshbodake.student.controller;
 
+import com.utkarshbodake.student.annotation.UserRequired;
 import com.utkarshbodake.student.entity.CurrentUser;
 import com.utkarshbodake.student.entity.Student;
 import com.utkarshbodake.student.service.StudentService;
@@ -24,6 +25,7 @@ public class StudentController {
         return studentService.getStudents();
     }
 
+    @UserRequired
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Student getStudent(@PathVariable String id) {
         return studentService.getStudent(id);
