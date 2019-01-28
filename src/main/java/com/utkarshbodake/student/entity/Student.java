@@ -8,6 +8,6 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class Student {
 
-    @NonNull private String id;
+    @NonNull private long id;
     private String name;
 }

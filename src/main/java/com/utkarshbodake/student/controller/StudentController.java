@@ -31,7 +31,7 @@ public class StudentController {
 
     @UserRequired
     @GetMapping("/{id}")
-    public Student getStudent(@PathVariable String id) {
+    public Student getStudent(@PathVariable long id) {
         return studentService.getStudent(id);
     }
 

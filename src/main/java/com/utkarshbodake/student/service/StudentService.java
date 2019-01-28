@@ -16,7 +16,7 @@ public class StudentService {
         return studentDao.getAll();
     }
 
-    public Student getStudent(String id) {
+    public Student getStudent(long id) {
         return studentDao.get(id);
     }
 
