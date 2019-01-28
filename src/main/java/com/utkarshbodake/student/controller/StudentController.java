@@ -1,5 +1,7 @@
 package com.utkarshbodake.student.controller;
 
+import com.utkarshbodake.posts.entity.Post;
+import com.utkarshbodake.posts.service.PostService;
 import com.utkarshbodake.student.annotation.UserRequired;
 import com.utkarshbodake.student.entity.CurrentUser;
 import com.utkarshbodake.student.entity.Student;
@@ -24,6 +26,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private PostService postService;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Student> getStudents() {
         return studentService.getStudents();
@@ -39,5 +44,12 @@ public class StudentController {
     @PostMapping
     public void createStudent(@RequestBody Student student) {
         studentService.createStudent(student);
+    }
+
+    @UserRequired
+    @GetMapping("/{studentId}/posts")
+    public List<Post> getPosts(@PathVariable long studentId) {
+        System.out.println(studentId);
+        return postService.getPosts();
     }
 }
